@@ -141,8 +141,10 @@
   <ItemGroup>
     <ClCompile Include="Account.cpp" />
     <ClCompile Include="Bank.cpp" />
+    <ClCompile Include="Customer.cpp" />
     <ClCompile Include="MainInput.cpp" />
     <ClCompile Include="Source.cpp" />
+    <ClCompile Include="Transaction.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Account.h" />
