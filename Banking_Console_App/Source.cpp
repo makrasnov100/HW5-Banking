@@ -1,10 +1,19 @@
-//Author: Kostiantyn Makrasnov
-//Main driver of the program
+/**
+*  Program Name: Banking Console App
+*  Last modified: Spring 2018
+*  Authors: Whitworth CS Department & Kostiantyn Makrasnov
+*/
 
 #include <iostream>
-
 #include "MainInput.h"
 #include "Bank.h"
+
+/**
+	Main.cpp
+	Main driver of the program
+
+	@author: Kostiantyn Makrasnov
+*/
 
 
 int main() {

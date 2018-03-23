@@ -1,7 +1,3 @@
-//Author: Kostiantyn Makrasnov
-// Contains the methods which carry out high-level user commands - implemeentation
-// Majority of code in this specific file is a refactored version of the provided Whitworth Faculty project
-
 #include <iostream>
 #include <string>
 #include <stdexcept>
@@ -14,6 +10,12 @@ using std::cout;
 using std::cin;
 using std::endl;
 
+/**
+MainInput - Implementation
+Contains the methods which carry out high-level user commands
+
+@author Whitworth Faculty & Kostiantyn Makrasnov
+*/
 
 
 /// CONSTRUCTOR(S)
@@ -119,7 +121,7 @@ void MainInput::initAddAccount(Bank &bank) {
 		acct = bank.addAccount(name, address, telephone, age, cust_type_str, acct_type_str);
 	}
 	if (acct) {
-		cout << "Your new account ID is " << acct->getAccount() << endl;
+		cout << "Your new account ID is " << acct->getAccountID() << endl;
 	}
 	else {
 		cout << "Sorry.  We failed to create an account for you\n";
@@ -155,10 +157,10 @@ void MainInput::initWithdraw(Bank &bank) {
 /// UTILITIES
 /**
 	Get an int from user between specified range w/ validation
-	@param prompt	prompt to user
-	@param low		lowest accepted integer
-	@param high		highest accepted integer
-	@return			user's integer within accepted range
+	@param prompt:	prompt to user
+	@param low:		lowest accepted integer
+	@param high:	highest accepted integer
+	@return:		user's integer within accepted range
 */
 int MainInput::readInt(string prompt, int low, int high) {
 	// Invalid range check

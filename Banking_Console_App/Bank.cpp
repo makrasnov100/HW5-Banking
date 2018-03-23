@@ -1,7 +1,3 @@
-//Author: Kostiantyn Makrasnov
-// Contains the bank's actions and variables - Implementation
-// Majority of code in this specific file is a refactored version of the provided Whitworth Faculty project
-
 #include <vector>
 #include <string>
 #include "Bank.h"
@@ -9,12 +5,16 @@
 using std::vector;
 using std::string;
 
+/**
+Bank - Implementation
+The Bank has Accounts and Customers
+
+@author: Ed Walker & Kostiantyn Makrasnov
+*/
 
 
 /// CONSTRUCTOR(S)
-/** 
-Default constructor - starts counters at 1k
-*/
+//	Default constructor - starts counters at 1k
 Bank::Bank() : account_id(1000), customer_id(1000) {}
 
 
@@ -22,7 +22,7 @@ Bank::Bank() : account_id(1000), customer_id(1000) {}
 /// LOCATOR(S)
 /**
 	Return a vector of accounts owned by the specified name of the customer.
-	@param name:	The customer name
+	@param name:	customer name
 	@return:		vector of account ids
 */
 vector<int> Bank::findAccountsByName(string name)
@@ -36,7 +36,7 @@ vector<int> Bank::findAccountsByName(string name)
 
 /**
 	Find a customer based on his/her name
-	@param name:	The customer name
+	@param name:	customer name
 	@return:		customer object if found, NULL otherwise
 */
 Customer* Bank::findCustomer(string name)
@@ -51,9 +51,9 @@ Customer* Bank::findCustomer(string name)
 /// ACCOUNT ALTERATION
 /**
 	Create a new account under a customer object (irrespective of its specific type: adult, senior, or student)
-	@param cust:			The customer object
-	@param account_type:	The account type, i.e. "savings" or "checking"
-	@return:				the newly created account object
+	@param cust:			customer object
+	@param account_type:	account type, i.e. "savings" or "checking"
+	@return:				newly created account object
 */
 Account* Bank::createAccount(Customer *cust, string account_type)
 {
@@ -66,9 +66,9 @@ Account* Bank::createAccount(Customer *cust, string account_type)
 
 /**
 	Try adding account for a possibly existing user
-	@param name:			The customer name
-	@param account_type:	The account type, i.e. "checking" or "savings"
-	@return:				the newly created account object if the customer exist, or NULL otherwise
+	@param name:			customer name
+	@param account_type:	account type, i.e. "checking" or "savings"
+	@return:				newly created account object if the customer exist, or NULL otherwise
 */
 Account* Bank::addAccount(string name, string account_type)
 {
@@ -80,13 +80,13 @@ Account* Bank::addAccount(string name, string account_type)
 
 /**
 	Add initial account to a new customer
-	@param name:			Customer name
-	@param address:			Customer address
-	@param telephone:		Customer telephone number
-	@param age:				Customer age
-	@param cust_type:		Customer type, i.e. "adult", "senior" or "student"
-	@param account_type:	Account type, i.e. "checking" or "savings"
-	@return:				the newly created account object
+	@param name:			customer name
+	@param address:			customer address
+	@param telephone:		customer telephone number
+	@param age:				customer age
+	@param cust_type:		customer type, i.e. "adult", "senior" or "student"
+	@param account_type:	account type, i.e. "checking" or "savings"
+	@return:				newly created account object
 */
 Account* Bank::addAccount(string name, string address, string telephone, int age,
 	string cust_type, string account_type)
@@ -104,8 +104,8 @@ Account* Bank::addAccount(string name, string address, string telephone, int age
 /// ACCOUNT ACTIONS
 /**
 	Make a deposit in an account identified by the account id
-	@param acct_number:	The account id
-	@param amt:			The amount to deposit
+	@param acct_number:	account id
+	@param amt:			amount to deposit
 */
 void Bank::makeDeposit(int acct_number, double amt)
 {
@@ -117,8 +117,8 @@ void Bank::makeDeposit(int acct_number, double amt)
 
 /**
 	Make a withdrawal in an account identified by the account id
-	@param acct_number:	The account id
-	@param amt:			The amount to withdraw
+	@param acct_number:	account id
+	@param amt:			amount to withdraw
 */
 void Bank::makeWithdrawal(int acct_number, double amt)
 {
@@ -133,23 +133,23 @@ void Bank::makeWithdrawal(int acct_number, double amt)
 /// ACCESSOR(S)/MUTATOR(S)
 /**
 	Get the list of account numbers associated with a user, identified by his/her name
-	@param name:	The customer name
+	@param name:	customer name
 	@return:		vector of account ids
 */
 vector<int> Bank::getAccounts(string name)
 {
-	return find_accounts_by_name(name);
+	return findAccountsByName(name);
 }
 
 /**
 	Get the account object for an account identified by an account id
-	@param acct_name:	The account id
-	@return:			the account object if it exists, NULL otherwise
+	@param acct_name:	account id
+	@return:			account object if it exists, NULL otherwise
 */
 Account * Bank::getAccount(int acct_number)
 {
 	for (size_t i = 0; i < accounts.size(); i++) {
-		if (accounts[i]->get_account() == acct_number)
+		if (accounts[i]->getAccountID() == acct_number)
 			return accounts[i];
 	}
 	return NULL;

@@ -1,11 +1,16 @@
-//Author: Kostiantyn Makrasnov
-// Contains the methods which carry out high-level user commands - Header
-
 #ifndef MAININPUT_H
 #define MAININPUT_H
 
 #include <string>
 #include "Bank.h"
+
+/**
+MainInput - Header
+Contains the methods prototypes which carry out high-level user commands
+
+@author Kostiantyn Makrasnov
+*/
+
 
 class MainInput {
 

@@ -1,6 +1,3 @@
-//Author: Kostiantyn Makrasnov
-// Contains the bank's actions and variables - Header
-
 #ifndef BANK_H
 #define BANK_H
 
@@ -11,6 +8,14 @@
 
 using std::vector;
 using std::string;
+
+/**
+Bank - Header
+The Bank has Accounts and Customers
+
+@author: Kostiantyn Makrasnov
+*/
+
 
 class Bank {
 
