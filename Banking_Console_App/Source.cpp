@@ -16,7 +16,9 @@ int main() {
 	
 	//Perform naking tasks while the station remains online
 	while (input.getOnlineStatus())
-		input.performTask(Bank &bank);
+		input.performTask(bank);
+	
+	system("pause"); //(revise - remove as needed since only used to show exit message)
 
 	return 0;
 }
