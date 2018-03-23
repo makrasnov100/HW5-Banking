@@ -2,10 +2,12 @@
 #define ACCOUNT_H
 
 #include <string>
+#include <vector>
 #include "Customer.h"
 #include "Transaction.h"
 
 using std::string;
+using std::vector;
 
 /**
 Account - Header
@@ -23,7 +25,7 @@ protected:
 	Customer* customer;		// The customer who owns this account
 	double balance;			// The available balance in this account
 	int account_number;		// A unique number identifying this account
-	std::vector<Transaction *> transactions;  // The record of transactions that have occured with this account
+	vector<Transaction *> transactions;  // The record of transactions that have occured with this account
 
 	/// INFORMATION (#)
 	//Describe fees associated with the customer who owns this account
@@ -41,8 +43,6 @@ public:
 	/// INFORMATION (+)
 	//Generic method describing the account information.
 	virtual string toString();
-	////Gets the correct interest rate from customer
-	//double findInterestConstant(string accType);
 	
 	/// ACCOUNT ACTIONS
 	//Deposits amount into account

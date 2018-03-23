@@ -1,9 +1,11 @@
 #include <vector>
 #include <string>
+#include <iostream>
 #include "Bank.h"
 
 using std::vector;
 using std::string;
+using std::cout;
 
 /**
 Bank - Implementation
@@ -29,7 +31,10 @@ vector<int> Bank::findAccountsByName(string name)
 {
 	vector<int> user_accounts;
 
-	// FIXME: Find all the accounts belonging to a customer name and add it to the vector of account numbers.
+	//Search through all of the bank accounts by name
+	for (int i = 0; i < accounts.size(); i++)
+		if (accounts[i]->getCustomer()->getName() == name)
+			user_accounts.push_back(accounts[i]->getAccountID());
 
 	return user_accounts;
 }
@@ -41,7 +46,10 @@ vector<int> Bank::findAccountsByName(string name)
 */
 Customer* Bank::findCustomer(string name)
 {
-	// FIXME: Find and return the Customer object with the parameter name
+	//Search through all of the bank customers by name
+	for (int i = 0; i < customers.size(); i++)
+		if (customers[i]->getName() == name)
+			return customers[i];
 
 	return NULL;
 }
@@ -110,9 +118,10 @@ Account* Bank::addAccount(string name, string address, string telephone, int age
 void Bank::makeDeposit(int acct_number, double amt)
 {
 	Account *acct = getAccount(acct_number);
-	if (acct) {
-		// FIXME: Deposit the amt in the account
-	}
+	if (acct)
+		acct->deposit(amt);
+	else
+		cout << "Deposit Failed! Please try again later...\n";
 }
 
 /**
@@ -123,9 +132,10 @@ void Bank::makeDeposit(int acct_number, double amt)
 void Bank::makeWithdrawal(int acct_number, double amt)
 {
 	Account *acct = getAccount(acct_number);
-	if (acct) {
-		// FIXME: Withdraw the amt from the account
-	}
+	if (acct)
+		acct->withdraw(amt);
+	else
+		cout << "Withdraw Failed! Please try again later...\n";
 }
 
 

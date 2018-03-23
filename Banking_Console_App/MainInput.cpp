@@ -133,7 +133,20 @@ void MainInput::initAddAccount(Bank &bank) {
 	@param bank:	current bank object that contains the customer
 */
 void MainInput::initListAccounts(Bank &bank) {
+	cout << "Please enter your name: ";
+	string name;
+	cin.ignore();
+	getline(cin, name);
 
+	vector<int> list = bank.getAccounts(name);
+	cout << endl;
+	for (size_t i = 0; i < list.size(); i++) {
+		Account *acct = bank.getAccount(list[i]);
+		if (acct)
+			cout << acct->toString();
+		cout << "-----------------------------------\n";
+	}
+	cout << "Total " << list.size() << " accounts found\n";
 };
 
 /**
@@ -141,7 +154,13 @@ void MainInput::initListAccounts(Bank &bank) {
 	@param bank:	current bank object that contains the customer
 */
 void MainInput::initDeposit(Bank &bank) {
-
+	int acct_id;
+	cout << "Please enter your account ID: ";
+	cin >> acct_id;
+	double amt;
+	cout << "Amount to deposit: ";
+	cin >> amt;
+	bank.makeDeposit(acct_id, amt);
 };
 
 /**
@@ -149,7 +168,13 @@ void MainInput::initDeposit(Bank &bank) {
 	@param bank:	current bank object that contains the customer
 */
 void MainInput::initWithdraw(Bank &bank) {
-
+	int acct_id;
+	cout << "Please enter your account ID: ";
+	cin >> acct_id;
+	double amt;
+	cout << "Amount to withdraw: ";
+	cin >> amt;
+	bank.makeWithdrawal(acct_id, amt);
 };
 
 

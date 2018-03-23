@@ -44,20 +44,9 @@ string Account::getFees()
 	// FIXME: Get the overdraft and check charge information from this accounts customer
 
 	stringstream ss;
-	ss << "Check Charge: " << charge << " Overdraft Fee: " << overdraft;
+	ss << " | Check Charge: " << charge << " | Overdraft Fee: " << overdraft;
 	return ss.str();
 }
-
-/**
-	Find the correct interest based on the account & customer type
-	@param string accType: account type that requres interest
-*/
-//double Account::findInterestConstant(string accType) {
-//	double interest = 0.0;
-//
-//
-//	return interest;
-//}
 
 /**
 	Generic method describing the account information.
@@ -85,8 +74,7 @@ void Account::addInterest(double interest) {
 	string fees = getFees();
 	Transaction *tran = NULL;
 
-	// FIXME: Create a Transaction object and assign it to the //Cotransaction vector.
-
+	tran = new Transaction(customer->getCustID, "Interest", amt, fees);
 	transactions.push_back(tran);
 }
 
@@ -101,8 +89,7 @@ void Account::deposit(double amt) {
 	string fees = getFees();
 	Transaction *tran = NULL;
 
-	// FIXME: Create a Transaction object and assign it to transaction vector.
-
+	tran = new Transaction(customer->getCustID, "Deposit", amt, fees);
 	transactions.push_back(tran);
 }
 
@@ -115,8 +102,7 @@ void Account::withdraw(double amt) {
 	string fees = getFees();
 	Transaction *tran = NULL;
 
-	// FIXME: Create a Transaction object and assign it to tran.
-
+	tran = new Transaction(customer->getCustID, "Withdrawal", amt, fees);
 	transactions.push_back(tran);
 }
 

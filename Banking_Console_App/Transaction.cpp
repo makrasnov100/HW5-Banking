@@ -30,6 +30,6 @@ Transaction::Transaction(int customer_number, string type, double amt, string fe
 string Transaction::processTran()
 {
 	std::stringstream ss;
-	ss << "Transaction: " << transaction_type << " Amount: " << amount << " " << fees;
+	ss << "Transaction: " << transaction_type << " | Amount: " << amount << " | " << fees;
 	return ss.str();
 }

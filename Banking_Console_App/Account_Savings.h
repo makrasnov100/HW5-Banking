@@ -28,6 +28,11 @@ private:
 		ss << "Savings Account - " << customer->getName() << endl;
 		ss << "-|Account ID: " << account_number << endl;
 		ss << "-|Balance: " << balance << endl;
+		ss << "-|Last Transactions:" << endl;
+		int amountShow = 0;
+		transactions.size() <= 3 ? amountShow = transactions.size() : amountShow = 3;
+		for (int i = 0; i < amountShow; i++)
+			ss << "--|" << std::to_string(i + 1) << ". " << transactions[transactions.size() - (i+1)]->processTran << endl;
 		return ss.str();
 	}
 
