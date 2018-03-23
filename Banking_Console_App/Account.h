@@ -20,7 +20,7 @@ Checking_Account and Savings_Account have specialized ways of adding interest, a
 class Account {
 
 protected:
-	Customer * customer;	// The customer who owns this account
+	Customer* customer;		// The customer who owns this account
 	double balance;			// The available balance in this account
 	int account_number;		// A unique number identifying this account
 	std::vector<Transaction *> transactions;  // The record of transactions that have occured with this account
@@ -41,6 +41,8 @@ public:
 	/// INFORMATION (+)
 	//Generic method describing the account information.
 	virtual string toString();
+	////Gets the correct interest rate from customer
+	//double findInterestConstant(string accType);
 	
 	/// ACCOUNT ACTIONS
 	//Deposits amount into account
@@ -54,8 +56,8 @@ public:
 	Customer* getCustomer();
 	void setCustomer(Customer* cust);
 
-	int getAccount();
-	void setAccount(int account_number);
+	int getAccountID();
+	void setAccountID(int account_number);
 
 	double getBalance();
 	void setBalance(double new_balance);

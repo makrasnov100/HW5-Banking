@@ -13,4 +13,15 @@ as well as its own checking and overdraft fees.
 @author: Kostiantyn Makrasnov
 */
 
-//FIX ME: Complete the implementation
+/// ACCESSOR(S)/MUTATOR(S)
+void Customer::setCustID(int custID) { customerID = custID; }
+void Customer::setName(string name) { this->name = name; }
+void Customer::setAddress(string address) { this->address = address; }
+void Customer::setAge(int age) { this->age = age; }
+void Customer::setTelNum(string telNum) { telephoneNum = telNum; }
+
+int Customer::getCustID() { return customerID; }
+string Customer::getName() { return name; }
+string Customer::getAddress() { return address; }
+int Customer::getAge() { return age; }
+string Customer::getTelNum() { return telephoneNum; }

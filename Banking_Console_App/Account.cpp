@@ -5,9 +5,11 @@
 #include "Customer.h"
 #include "Transaction.h"
 
+
 using std::string;
 using std::vector;
 using std::stringstream;
+using std::endl;
 
 /**
 Account - Implementation
@@ -41,24 +43,32 @@ string Account::getFees()
 	// Polymorphism: calls the correct virtual methods from the specific customer type
 	// FIXME: Get the overdraft and check charge information from this accounts customer
 
-	std::stringstream ss;
+	stringstream ss;
 	ss << "Check Charge: " << charge << " Overdraft Fee: " << overdraft;
 	return ss.str();
 }
 
 /**
+	Find the correct interest based on the account & customer type
+	@param string accType: account type that requres interest
+*/
+//double Account::findInterestConstant(string accType) {
+//	double interest = 0.0;
+//
+//
+//	return interest;
+//}
+
+/**
 	Generic method describing the account information.
-	FIXME: Remember that you will need to indicate if an account is Savings or Checking in
-	an overridden version of to_string() in the derived classes.
 	@return:	string describing generic information about the account
 */
 string Account::toString() {
-	std::stringstream ss;
+	stringstream ss;
 
-	// FIXME: Add information about the customer who owns this account.
-
-	ss << "  Balance: " << balance << std::endl;
-	ss << "  Account ID: " << account_number << std::endl;
+	ss << "Generic Account - " << customer->getName() << endl;
+	ss << "-|Account ID: " << account_number << endl;
+	ss << "-|Balance: " << balance << endl;
 	return ss.str();
 }
 
@@ -72,7 +82,7 @@ string Account::toString() {
 void Account::addInterest(double interest) {
 	double amt = balance * interest;
 	balance = balance + amt;
-	std::string fees = getFees();
+	string fees = getFees();
 	Transaction *tran = NULL;
 
 	// FIXME: Create a Transaction object and assign it to the //Cotransaction vector.
@@ -88,7 +98,7 @@ void Account::addInterest(double interest) {
 */
 void Account::deposit(double amt) {
 	balance += amt;
-	std::string fees = getFees();
+	string fees = getFees();
 	Transaction *tran = NULL;
 
 	// FIXME: Create a Transaction object and assign it to transaction vector.
@@ -102,7 +112,7 @@ void Account::deposit(double amt) {
 */
 void Account::withdraw(double amt) {
 	balance -= amt;
-	std::string fees = getFees();
+	string fees = getFees();
 	Transaction *tran = NULL;
 
 	// FIXME: Create a Transaction object and assign it to tran.
@@ -121,11 +131,11 @@ void Account::setCustomer(Customer* cust) {
 	customer = cust;
 }
 
-int Account::getAccount() {
+int Account::getAccountID() {
 	return account_number;
 }
 
-void Account::setAccount(int account_number) {
+void Account::setAccountID(int account_number) {
 	this->account_number = account_number;
 }
 
