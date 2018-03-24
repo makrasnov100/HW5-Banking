@@ -1,4 +1,4 @@
-# HW5-Banking
+# HW5-HW6-Banking
 Data Structures Assignment
 
-Practicing Polymorphism and Inheretence in mid-size project
+Practicing Inheretence, Polythism, and Composition in mid-size project.
