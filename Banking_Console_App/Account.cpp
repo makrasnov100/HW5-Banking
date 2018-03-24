@@ -38,13 +38,14 @@ Account::Account(Customer* cust, int id) : customer(cust), account_number(id), b
 */
 string Account::getFees()
 {
-	int overdraft, charge;
+	double overdraft, charge = 0.0;
 
-	// Polymorphism: calls the correct virtual methods from the specific customer type
-	// FIXME: Get the overdraft and check charge information from this accounts customer
+	// Get the correct values of fees
+	overdraft = customer->getOverdraftFee();
+	charge = customer->getCheckFee();
 
 	stringstream ss;
-	ss << " | Check Charge: " << charge << " | Overdraft Fee: " << overdraft;
+	ss << " | Annual Check Charge: " << charge << " USD | Possible Overdraft Fee: " << overdraft << " USD";
 	return ss.str();
 }
 
@@ -74,7 +75,7 @@ void Account::addInterest(double interest) {
 	string fees = getFees();
 	Transaction *tran = NULL;
 
-	tran = new Transaction(customer->getCustID, "Interest", amt, fees);
+	tran = new Transaction(customer->getCustID(), "Interest", amt, fees);
 	transactions.push_back(tran);
 }
 
@@ -89,7 +90,7 @@ void Account::deposit(double amt) {
 	string fees = getFees();
 	Transaction *tran = NULL;
 
-	tran = new Transaction(customer->getCustID, "Deposit", amt, fees);
+	tran = new Transaction(customer->getCustID(), "Deposit", amt, fees);
 	transactions.push_back(tran);
 }
 
@@ -102,7 +103,7 @@ void Account::withdraw(double amt) {
 	string fees = getFees();
 	Transaction *tran = NULL;
 
-	tran = new Transaction(customer->getCustID, "Withdrawal", amt, fees);
+	tran = new Transaction(customer->getCustID(), "Withdrawal", amt, fees);
 	transactions.push_back(tran);
 }
 

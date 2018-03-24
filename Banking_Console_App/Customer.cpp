@@ -13,6 +13,13 @@ as well as its own checking and overdraft fees.
 @author: Kostiantyn Makrasnov
 */
 
+
+/// CONSTRUCTOR(S)
+Customer::Customer(int customerID, string name, string address, int age, string teleNum) :
+	customerID(customerID), name(name), address(address), age(age), telephoneNum(teleNum) {}
+
+
+
 /// ACCESSOR(S)/MUTATOR(S)
 void Customer::setCustID(int custID) { customerID = custID; }
 void Customer::setName(string name) { this->name = name; }

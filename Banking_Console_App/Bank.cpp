@@ -2,6 +2,8 @@
 #include <string>
 #include <iostream>
 #include "Bank.h"
+#include "Account_Checkings.h"
+#include "Account_Savings.h"
 
 using std::vector;
 using std::string;
@@ -32,7 +34,7 @@ vector<int> Bank::findAccountsByName(string name)
 	vector<int> user_accounts;
 
 	//Search through all of the bank accounts by name
-	for (int i = 0; i < accounts.size(); i++)
+	for (size_t i = 0; i < accounts.size(); i++)
 		if (accounts[i]->getCustomer()->getName() == name)
 			user_accounts.push_back(accounts[i]->getAccountID());
 
@@ -47,7 +49,7 @@ vector<int> Bank::findAccountsByName(string name)
 Customer* Bank::findCustomer(string name)
 {
 	//Search through all of the bank customers by name
-	for (int i = 0; i < customers.size(); i++)
+	for (size_t i = 0; i < customers.size(); i++)
 		if (customers[i]->getName() == name)
 			return customers[i];
 
@@ -63,11 +65,18 @@ Customer* Bank::findCustomer(string name)
 	@param account_type:	account type, i.e. "savings" or "checking"
 	@return:				newly created account object
 */
-Account* Bank::createAccount(Customer *cust, string account_type)
+Account* Bank::createAccount(Customer* cust, string account_type)
 {
 	Account *acct = NULL;
 
-	// FIXME: Factory method for creating a Account object (could be a Saving_Account or a Checking_Account).
+	if (account_type == "savings")
+		acct = new Savings_Account(cust, account_id);
+	else
+		acct = new Checkings_Account(cust, account_id);
+
+	//Add account to list & update next account id
+	accounts.push_back(acct);
+	account_id++; //(revise - may include function for better id generation)
 
 	return acct;
 }
@@ -101,9 +110,26 @@ Account* Bank::addAccount(string name, string address, string telephone, int age
 {
 	Customer *cust;
 
-	// FIXME: Depending on the customer type, we want to create an Adult, Senior, or Student object.
+	if (cust_type == "adult")
+	{
+		cust = new Customer_Adult(customer_id, name, address, age, telephone);
+		cout << "Created Adult Customer." << endl;
+	}
+	else if (cust_type == "senior") {
+		cust = new Customer_Senior(customer_id, name, address, age, telephone);
+		cout << "Created Senior Customer." << endl;
+	}
+	else
+	{
+		cust = new Customer_Student(customer_id, name, address, age, telephone);
+		cout << "Created Student Customer." << endl;
+	}
 
+
+	//Update next id and add customer to the bank database
+	customer_id++;
 	customers.push_back(cust);
+
 	return createAccount(cust, account_type);
 }
 
@@ -163,6 +189,15 @@ Account * Bank::getAccount(int acct_number)
 			return accounts[i];
 	}
 	return NULL;
+}
+
+/**
+	Get the amount of accounts in bank
+	@return:	amount of created accounts in bank
+*/
+int Bank::getAccountAmount()
+{
+	return accounts.size();
 }
 
 

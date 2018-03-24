@@ -1,5 +1,5 @@
-#ifndef CHECKINGS_ACCOUNT_H
-#define CHECKINGS_ACCOUNT_H
+#ifndef ACCOUNT_CHECKINGS_H
+#define ACCOUNT_CHECKINGS_H
 
 #include <sstream>
 #include "Account.h"
@@ -19,20 +19,20 @@ Defines the checking account properties
 
 
 class Checkings_Account : public Account {
-public:
+private:
 	/// INFORMATION
 	//Account details printed out
 	string toString() {
 		stringstream ss;
 
-		ss << "Checking Account - " << customer->getName() << endl;
+		ss << "Checkings Account - " << customer->getName() << endl;
 		ss << "-|Account ID: " << account_number << endl;
 		ss << "-|Balance: " << balance << endl;
 		ss << "-|Last Transactions:" << endl;
 		int amountShow = 0;
 		transactions.size() <= 3 ? amountShow = transactions.size() : amountShow = 3;
 		for (int i = 0; i < amountShow; i++)
-			ss << "--|" << std::to_string(i + 1) << ". " << transactions[transactions.size() - (i + 1)]->processTran << endl;
+			ss << "--|" << std::to_string(transactions.size() - i) << ". " << transactions[transactions.size() - (i + 1)]->processTran() << endl;
 		return ss.str();
 	}
 
@@ -52,6 +52,10 @@ public:
 		//Add aquired interest to balance
 		balance = balance * (1 + interest);
 	}
+
+public:
+	///CONSTRUCTOR(S)
+	Checkings_Account(Customer* cust, int accID) : Account(cust, accID) {}
 };
 
 #endif

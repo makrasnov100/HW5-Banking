@@ -61,7 +61,7 @@ void MainInput::performTask(Bank &bank) {
 		break;
 	default:
 		curOnline = false;
-		cout << "Goodbye! Thank you for visiting." << endl;
+		cout << "Goodbye! Thank you for visiting." << endl << endl;
 	}
 };
 
@@ -99,9 +99,7 @@ void MainInput::initAddAccount(Bank &bank) {
 		string telephone;
 		cout << "Telephone Number: ";
 		getline(cin, telephone);
-		cout << "Age: ";
-		int age;
-		cin >> age;
+		int age = readInt ("Age: ", 13, 150);
 
 		int cust_type;
 		string	menu_string = "Type of customer: \n";
@@ -118,6 +116,7 @@ void MainInput::initAddAccount(Bank &bank) {
 			cust_type_str = "senior";
 		else
 			cust_type_str = "student";
+		cout << "You entered: " << cust_type_str;
 		acct = bank.addAccount(name, address, telephone, age, cust_type_str, acct_type_str);
 	}
 	if (acct) {
@@ -146,7 +145,7 @@ void MainInput::initListAccounts(Bank &bank) {
 			cout << acct->toString();
 		cout << "-----------------------------------\n";
 	}
-	cout << "Total " << list.size() << " accounts found\n";
+	cout << "Total of " << list.size() << " account(s) found.\n\n";
 };
 
 /**
@@ -154,9 +153,13 @@ void MainInput::initListAccounts(Bank &bank) {
 	@param bank:	current bank object that contains the customer
 */
 void MainInput::initDeposit(Bank &bank) {
-	int acct_id;
-	cout << "Please enter your account ID: ";
-	cin >> acct_id;
+	//Get account ID from customer
+	if (bank.getAccountAmount() == 0) {
+		cout << "There are no accounts under this bank.\n\n";
+		return;
+	}
+	int acct_id = readInt("Please enter your account ID: ", 1000, (999 + bank.getAccountAmount()));
+	//Get amount to deposit
 	double amt;
 	cout << "Amount to deposit: ";
 	cin >> amt;
@@ -168,9 +171,13 @@ void MainInput::initDeposit(Bank &bank) {
 	@param bank:	current bank object that contains the customer
 */
 void MainInput::initWithdraw(Bank &bank) {
-	int acct_id;
-	cout << "Please enter your account ID: ";
-	cin >> acct_id;
+	//Get account ID from customer
+	if (bank.getAccountAmount() == 0) {
+		cout << "There are no accounts under this bank.\n\n";
+		return;
+	}
+	int acct_id = readInt("Please enter your account ID: ", 1000, (999 + bank.getAccountAmount()));
+	//Get amount to witworth
 	double amt;
 	cout << "Amount to withdraw: ";
 	cin >> amt;
@@ -189,10 +196,11 @@ void MainInput::initWithdraw(Bank &bank) {
 */
 int MainInput::readInt(string prompt, int low, int high) {
 	// Invalid range check
-	if (low >= high)
+	if (low > high)
 		throw std::invalid_argument("invalid range specified");
 
 	// Integer input check
+
 	cin.exceptions(std::ios_base::failbit);
 	int num = 0;
 	while (true) {

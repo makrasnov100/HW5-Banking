@@ -1,5 +1,5 @@
-#ifndef SAVINGS_ACCOUNT_H
-#define SAVINGS_ACCOUNT_H
+#ifndef ACCOUNT_SAVINGS_H
+#define ACCOUNT_SAVINGS_H
 
 #include <sstream>
 #include "Account.h"
@@ -32,7 +32,7 @@ private:
 		int amountShow = 0;
 		transactions.size() <= 3 ? amountShow = transactions.size() : amountShow = 3;
 		for (int i = 0; i < amountShow; i++)
-			ss << "--|" << std::to_string(i + 1) << ". " << transactions[transactions.size() - (i+1)]->processTran << endl;
+			ss << "--|" << std::to_string(transactions.size() - i) << ". " << transactions[transactions.size() - (i+1)]->processTran() << endl;
 		return ss.str();
 	}
 
@@ -52,6 +52,10 @@ private:
 		//Add aquired interest to balance
 		balance = balance * (1 + interest);
 	}
+
+public:
+	/// CONSTRUCTOR(S)
+	Savings_Account(Customer* cust, int accID) : Account(cust, accID) {}
 };
 
 #endif

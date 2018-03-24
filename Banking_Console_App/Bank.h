@@ -61,6 +61,8 @@ public:
 	vector<int> getAccounts(string name);
 	//Get the account object for an account identified by an account id
 	Account * getAccount(int acct_number);
+	//Get the amount of accounts in bank
+	int getAccountAmount();
 };
 
 #endif

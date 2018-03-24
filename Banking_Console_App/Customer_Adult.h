@@ -18,6 +18,10 @@ private:
 	const double OVERDRAFT_FEE = 45.00;				//per overdraft day
 
 public:
+	/// CONSTRUCTOR(S)
+	Customer_Adult(int customerID, string name, string address, int age, string teleNum) :
+		Customer(customerID, name, address, age, teleNum) {}
+
 	/// ACCESSOR(S)
 	double getCheckIntRate() { return CHECKING_INTEREST_RATE; }
 	double getSavingIntRate() { return SAVINGS_INTEREST_RATE; }

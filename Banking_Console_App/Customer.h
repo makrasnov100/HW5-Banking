@@ -26,6 +26,10 @@ private:
 	string telephoneNum;
 
 public:
+	/// CONSTRUCTOR(S)
+	//Constructor requires new customers to have certain information
+	Customer(int customerID, string name, string address, int age, string teleNum);
+
 	/// ACCESSOR(S)/MUTATOR(S)
 	void setCustID(int custID);
 	void setName(string name);
